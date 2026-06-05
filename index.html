@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electro Projects Hub - Admin Portfolio</title>
+    <title>Electro Projects Hub - Satyam Kumar Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -189,6 +189,7 @@
         <div class="projects-grid" id="projectGrid"></div>
     </section>
 
+    <!-- ADMIN AUTH MODAL -->
     <div class="modal-overlay" id="authModal">
         <div class="glass-modal">
             <button class="glass-close" onclick="closeModal('authModal')">&times;</button>
@@ -201,6 +202,7 @@
         </div>
     </div>
 
+    <!-- SUBMIT/EDIT MODAL -->
     <div class="modal-overlay" id="submitModal">
         <div class="modal-box">
             <span class="close-btn" onclick="closeModal('submitModal')">&times;</span>
@@ -214,8 +216,7 @@
                         <div class="form-group" style="flex: 1;"><label>Cost (₹)</label><input type="number" id="inCost" required></div>
                     </div>
                     <div class="form-group"><label>Components Used</label><textarea id="inComp" rows="2" required></textarea></div>
-                    
-                    <div class="form-group"><label>Source Code (Arduino / Embedded C++)</label><textarea id="inCode" rows="4" placeholder="// Paste your code code here..."></textarea></div>
+                    <div class="form-group"><label>Source Code (Arduino / Embedded C++)</label><textarea id="inCode" rows="4" placeholder="// Paste code here..."></textarea></div>
                     
                     <div style="display: flex; gap: 10px; margin-bottom: 20px;">
                         <div class="form-group" style="flex: 1; margin: 0;">
@@ -253,6 +254,7 @@
         </div>
     </div>
 
+    <!-- DETAIL MODAL -->
     <div class="modal-overlay" id="detailModal">
         <div class="modal-box">
             <span class="close-btn" onclick="closeModal('detailModal')">&times;</span>
@@ -283,6 +285,7 @@
         </div>
     </div>
 
+    <!-- SETTINGS MODAL -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal-box" style="max-width: 400px; padding: 30px;">
             <span class="close-btn" onclick="closeModal('settingsModal')">&times;</span>
@@ -300,6 +303,7 @@
         </div>
     </div>
 
+    <!-- UNDO DELETION TOAST -->
     <div id="undoToast">
         <span>Project deleted.</span>
         <button onclick="undoDelete()">UNDO</button>
@@ -391,11 +395,53 @@
             }
         }, 1500);
 
-        // --- HARDCODED PROJECTS WITH DEMO CODE ---
+        // =========================================================================
+        // 🛠️ यहाँ है आपका MAIN DATABASE SECTION (यहाँ नया प्रोजेक्ट जोड़ते जाएँ)
+        // =========================================================================
         let defaultProjects = [
-            { id: 1, owner: "Satyam Kumar", title: "IoT Home Automation", category: "IoT", comp: "ESP32, Relay Module", cost: "600", img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=500", code: "void setup() {\n  pinMode(2, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(2, HIGH);\n  delay(1000);\n  digitalWrite(2, LOW);\n  delay(1000);\n}", pdf: "", circuit: "", views: 152 },
-            { id: 2, owner: "Satyam Kumar", title: "Mini CNC Plotter", category: "3D Design", comp: "Arduino, Stepper Motor", cost: "1200", img: "https://images.unsplash.com/photo-1531693251400-38df35776dc7?w=500", code: "#include <Stepper.h>\nvoid setup() {\n  // CNC Stepper Engine Initialization\n}", pdf: "", circuit: "", views: 98 }
+            { 
+                id: 1, 
+                owner: "Satyam Kumar", 
+                title: "IoT Home Automation", 
+                category: "IoT", 
+                comp: "ESP32, Relay Module", 
+                cost: "600", 
+                img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=500", 
+                code: "void setup() {\n  pinMode(2, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(2, HIGH);\n  delay(1000);\n  digitalWrite(2, LOW);\n  delay(1000);\n}", 
+                pdf: "", 
+                circuit: "", 
+                views: 152 
+            },
+            { 
+                id: 2, 
+                owner: "Satyam Kumar", 
+                title: "Mini CNC Plotter", 
+                category: "3D Design", 
+                comp: "Arduino, Stepper Motor", 
+                cost: "1200", 
+                img: "https://images.unsplash.com/photo-1531693251400-38df35776dc7?w=500", 
+                code: "#include <Stepper.h>\nvoid setup() {\n  // CNC Stepper Engine Initialization\n}", 
+                pdf: "", 
+                circuit: "", 
+                views: 98 
+            },  
+            { 
+                id: 3, 
+                owner: "Satyam Kumar", 
+                title: "rodotic car", 
+                category: "robotic", 
+                comp: "Ardino uno, moter driver, gear moter, car frame, ir sensor, battery", 
+                cost: "2000", 
+                img: "https://www.elecrow.com/blog/top-6-popular-robotic-car.html?srsltid=AfmBOoqzhCWvGIgLohQU6LgEXTWACwmaoQ9iIrhcmsVG2kbyIzDqm3dI?w=500", 
+                code: "", 
+                pdf: "", 
+                circuit: "", 
+                views: 152 
+            },
+            // 📝 जब भी नया प्रोजेक्ट जोड़ना हो, ऊपर वाले प्रोजेक्ट के बंद होने वाले } के बाद 
+            // एक कॉमा (,) लगाएं और नीचे अपना नया प्रोजेक्ट ऑब्जेक्ट पेस्ट कर दें।
         ];
+        // =========================================================================
 
         const TARGET_ADMIN_EMAIL = "admin@gmail.com";
         let HASHED_ADMIN_PASSWORD = "";
@@ -404,9 +450,16 @@
             HASHED_ADMIN_PASSWORD = await hashPassword("123");
         }
 
-        let projects = JSON.parse(localStorage.getItem('electroProjects')) || defaultProjects;
-        let idCounter = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
+        // LocalStorage fallback for temporary additions/views synchronization
+        let projects = JSON.parse(localStorage.getItem('electroProjects'));
         
+        // If local storage is empty or does not match version, sync with defaultProjects
+        if (!projects || projects.length < defaultProjects.length) {
+            projects = defaultProjects;
+            localStorage.setItem('electroProjects', JSON.stringify(projects));
+        }
+
+        let idCounter = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
         let isAdminLoggedIn = localStorage.getItem('electroAdminToken') === 'true';
         let currentCategoryFilter = 'all';
         let lastDeletedProject = null;
@@ -419,7 +472,7 @@
                 localStorage.setItem('electroProjects', JSON.stringify(projects));
                 localStorage.setItem('electroAdminToken', isAdminLoggedIn ? 'true' : 'false');
             } catch (e) {
-                alert("Storage full! कृपया कवर इमेज या PDF का साइज छोटा रखें।");
+                alert("Storage full! फाइलों का साइज छोटा रखें।");
             }
         }
 
@@ -471,7 +524,7 @@
                 saveData();
                 updateNavState();
                 displayProjects();
-                alert("एडमिन पैनल सुरक्षित रूप से बंद हो गया है।");
+                alert("एडमिन पैनल बंद हो गया है।");
             } else { 
                 document.getElementById('authForm').reset();
                 openModal('authModal'); 
@@ -497,7 +550,7 @@
             }
         }
 
-        // --- FILTER SYNC IMPLEMENTATION ---
+        // --- FILTER SYNC ---
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -567,7 +620,7 @@
             let nCat = document.getElementById('inCategory').value;
             let nComp = document.getElementById('inComp').value;
             let nCost = document.getElementById('inCost').value;
-            let nCode = document.getElementById('inCode').value; // Get Code input value
+            let nCode = document.getElementById('inCode').value; 
             
             let uploadedCover = document.getElementById('coverData').value;
             let uploadedPdf = document.getElementById('pdfData').value;
@@ -579,14 +632,14 @@
                     id: idCounter++, title: title, category: nCat, comp: nComp, cost: nCost, code: nCode, owner: "Satyam Kumar", 
                     img: imgUrl, pdf: uploadedPdf, circuit: uploadedCircuit, views: 0
                 });
-                alert("प्रोजेक्ट सफलतापूर्वक लाइव कर दिया गया!");
+                alert("प्रोजेक्ट लाइव हो गया! (नोट: इसे हमेशा के लिए सेव करने के लिए कोड के defaultProjects एरे में जोड़ें)");
             } else {
                 let index = projects.findIndex(p => p.id == editId);
                 projects[index].title = title;
                 projects[index].category = nCat;
                 projects[index].comp = nComp;
                 projects[index].cost = nCost;
-                projects[index].code = nCode; // Update Code string
+                projects[index].code = nCode; 
                 if(uploadedCover !== "") projects[index].img = uploadedCover;
                 if(uploadedPdf !== "") projects[index].pdf = uploadedPdf;
                 if(uploadedCircuit !== "") projects[index].circuit = uploadedCircuit;
@@ -605,7 +658,7 @@
             document.getElementById('inCategory').value = proj.category;
             document.getElementById('inComp').value = proj.comp;
             document.getElementById('inCost').value = proj.cost;
-            document.getElementById('inCode').value = proj.code || ""; // Populate Code box
+            document.getElementById('inCode').value = proj.code || ""; 
             
             document.getElementById('coverData').value = proj.img || "";
             document.getElementById('pdfData').value = proj.pdf || "";
@@ -623,7 +676,7 @@
         function deleteProject(e, id) { 
             e.stopPropagation(); if(!isAdminLoggedIn) return;
             
-            if(confirm("क्या आप इस प्रोजेक्ट को डेटाबेस से डिलीट करना चाहते हैं?")) { 
+            if(confirm("क्या आप इस प्रोजेक्ट को डिलीट करना चाहते हैं?")) { 
                 let index = projects.findIndex(p => p.id == id);
                 lastDeletedProject = { index: index, data: projects[index] };
                 
@@ -668,7 +721,6 @@
             document.getElementById('popupCost').innerText = "₹" + proj.cost;
             document.getElementById('popupImg').src = proj.img || "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500";
             
-            // Render Code Box if code string exists
             let codeBox = document.getElementById('codeDisplaySection');
             if(proj.code && proj.code.trim() !== "") {
                 document.getElementById('popupCode').innerText = proj.code;
@@ -680,15 +732,14 @@
             openModal('detailModal');
         }
 
-        // NEW LOGIC: CLIPBOARD COPY MANAGER FOR USER VIEW
         function copyProjectCode() {
             let codeText = document.getElementById('popupCode').innerText;
             if(!codeText) return;
             
             navigator.clipboard.writeText(codeText).then(() => {
-                alert("प्रोजेक्ट का कोड सफलतापूर्वक कॉपी हो गया है! आप इसे Arduino IDE में पेस्ट कर सकते हैं।");
+                alert("प्रोजेक्ट का कोड कॉपी हो गया है! आप इसे अपने Arduino IDE में पेस्ट कर सकते हैं।");
             }).catch(err => {
-                console.error("Copy operation failed: ", err);
+                console.error("Copy failed: ", err);
             });
         }
 
@@ -707,12 +758,13 @@
             downloadLink.click();
         }
 
+        // Circuit diagram display engine
         function viewCircuitDiagram() {
             let projId = document.getElementById('popupProjId').value;
             let proj = projects.find(p => p.id == projId);
 
             if(!proj.circuit || proj.circuit === "") {
-                alert("इस प्रोजेक्ट का सर्किट डायग्राम अपलोड नहीं किया गया है।");
+                alert("इस प्रोजेक्ट का सर्किट डायग्राम उपलब्ध नहीं है।");
                 return;
             }
 
